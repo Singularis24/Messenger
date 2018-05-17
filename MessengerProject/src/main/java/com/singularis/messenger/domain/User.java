@@ -1,6 +1,7 @@
 package com.singularis.messenger.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "user", schema = "messenger", catalog = "")
@@ -11,9 +12,11 @@ public class User {
     private String phone;
     private String firstName;
     private String lastName;
+    private int active;
     private String role;
 
     @Id
+    @GeneratedValue
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -34,7 +37,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "password", nullable = false, length = 45)
+    @Column(name = "password", nullable = false, length = 100)
     public String getPassword() {
         return password;
     }
@@ -74,7 +77,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "role", nullable = true, length = 45)
+    @Column(name="role", nullable = true, length = 45)
     public String getRole() {
         return role;
     }
@@ -82,7 +85,6 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-
     public User(){};
 
     public User(String login, String password, String phone, String firstName, String lastName, String role){
@@ -91,7 +93,16 @@ public class User {
         this.phone = phone;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.role = role;
+    }
+
+    @Basic
+    @Column(name="active")
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 
     @Override
@@ -107,8 +118,6 @@ public class User {
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
         if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
-        if (role != null ? !role.equals(that.role) : that.role != null) return false;
-
         return true;
     }
 
@@ -120,7 +129,6 @@ public class User {
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
     }
 
@@ -133,7 +141,6 @@ public class User {
                 ", phone='" + phone + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", role='" + role + '\'' +
                 '}';
     }
 }

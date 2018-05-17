@@ -1,10 +1,12 @@
 package com.singularis.messenger.service.Impl;
 
 import com.singularis.messenger.domain.User;
+import com.singularis.messenger.domain.enums.UserRoleEnum;
 import com.singularis.messenger.repository.UserRepository;
 import com.singularis.messenger.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,10 +19,17 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+
     @Override
     @Transactional
     public User addUser(User user) {
-       return userRepository.saveAndFlush(user);
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setActive(1);
+        user.setRole(UserRoleEnum.ADMIN.toString());
+        return userRepository.saveAndFlush(user);
     }
 
     @Override
