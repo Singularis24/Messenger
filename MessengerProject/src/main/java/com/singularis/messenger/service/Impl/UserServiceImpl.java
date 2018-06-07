@@ -22,13 +22,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
     @Override
     @Transactional
     public User addUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
-        user.setRole(UserRoleEnum.ADMIN.toString());
+        user.setRole(UserRoleEnum.USER.toString());
         return userRepository.saveAndFlush(user);
     }
 
