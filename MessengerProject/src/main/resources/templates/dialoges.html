@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>YeeBoy Messenger</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/dialoges.css}" href="../../static/css/dialoges.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="header">
+    <div class="row header-link">
+        <div class="col-md-2 home-link">
+            <a th:href="@{/user/home}"><span>Yee</span>Boooy</a>
+        </div>
+        <div class="col-md-2">
+            <form th:action="@{/search}" method="post">
+                <input type="search" name="stringSearch" placeholder="Поиск" class="form-control search-input"/>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/dialoges}">Диалоги</a>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/user/settings}">Настройки</a>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/logout}">Выход</a>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+
+<div class="container ">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 dialoges-container">
+        <div th:each="dialog: ${dialoges}">
+            <a th:if="${dialog.users.get(0).id==user.id && dialog.getUsers().size()==2}" th:text="'Диалог с ' +
+            ${dialog.getUsers().get(1).getFirstName()} + ' ' + ${dialog.getUsers().get(1).getLastName()} + ' ' + '(' +
+            ${dialog.getUsers().get(1).getLogin()} + ')'" th:href="'/dialog/' + ${dialog.getUsers().get(1).id}"></a>
+
+            <a th:if="${dialog.getUsers().size()==2 && dialog.users.get(1).id==user.id}" th:text="'Диалог с ' + ${dialog.users.get(0).firstName} +
+            ' ' +${dialog.users.get(0).lastName} + ' ' + '(' +
+            ${dialog.users.get(0).login} + ')'" th:href="'/dialog/' + ${dialog.getUsers().get(0).id}"></a>
+
+            <a th:if="${dialog.getUsers().size()==1}" th:text="'Диалог с самим собой'" th:href="'/dialog/' + ${dialog.getUsers().get(0).id}"></a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

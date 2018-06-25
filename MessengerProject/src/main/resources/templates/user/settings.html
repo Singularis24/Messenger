@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>YeeBoy Messenger</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/settings.css}" href="../../static/css/settings.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="header container">
+    <div class="row header-link">
+        <div class="col-md-2 home-link">
+            <a th:href="@{/user/home}"><span>Yee</span>Boooy</a>
+        </div>
+        <div class="col-md-2">
+            <form th:action="@{/search}" method="post">
+                <input type="search" name="stringSearch" placeholder="Поиск" class="form-control search-input"/>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/dialoges}">Диалоги</a>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/user/settings}">Настройки</a>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/logout}">Выход</a>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 settings-container">
+            <form th:action="@{/user/settings/uploadFile}" enctype="multipart/form-data" method="post">
+                <p>Загрузи свой аватар</p>
+                <p><input type="file" name="file" accept="image/*,image/jpeg"></p>
+                <p><input type="submit" class="btn" value="Отправить"></p>
+            </form>
+            <div class="inform-container">
+                <p>Указать дополнительную информацию</p>
+                <form th:id="op" th:action="@{/user/settings/getOptionalInformation}" method="post" th:object="${userSettings}">
+                    <input name="city" type="text" placeholder="Город" class="form-control">
+                    <input name="phone" type="text" placeholder="Телефон" class="form-control">
+                    <input name="dateBirth" type="date" placeholder="Дата рождения" class="form-control">
+                    <button th:for="op" type="submit" class="btn">Отправить</button>
+                </form>
+            </div>
+            <div class="inform-container">
+                <p>Изменить основную информацию</p>
+                <form th:id="gen" th:action="@{/user/settings/getGeneralInformation}" method="post" th:object="${userSettings}">
+                    <input name="firstName" type="text" placeholder="Имя" class="form-control">
+                    <input name="lastName" type="text" placeholder="Фамилия" class="form-control">
+                    <input name="login" type="text" placeholder="Логин" class="form-control">
+                    <p th:if="${error}" th:text="${error}"></p>
+                    <input name="password" type="text" placeholder="Пароль" class="form-control">
+                    <button th:for="gen" type="submit" class="btn">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

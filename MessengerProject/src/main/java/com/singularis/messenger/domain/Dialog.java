@@ -2,14 +2,34 @@ package com.singularis.messenger.domain;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "dialog", schema = "messenger", catalog = "")
 public class Dialog {
     private int id;
     private Date createDate;
+    private String members;
+
+    private List<User> users = new ArrayList<>();
+    @ManyToMany (mappedBy = "dialoges")
+    public List<User> getUsers() {return users;}
+    public void setUsers(List<User> users){this.users = users;}
+
+    private List<Message> messages = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
+    @JoinColumn(name = "messages")
+    public List<Message> getMessages() {
+        return messages;
+    }
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
 
     @Id
+    @GeneratedValue
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -21,31 +41,21 @@ public class Dialog {
 
     @Basic
     @Column(name = "create_date", nullable = false)
-    public java.util.Date getCreateDate() {
-        return createDate;
+    public LocalDate getCreateDate() {
+        return createDate.toLocalDate();
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreateDate(LocalDate createDate){
+        this.createDate = Date.valueOf(createDate);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Dialog that = (Dialog) o;
-
-        if (id != that.id) return false;
-        if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
-
-        return true;
+    @Basic
+    @Column(name = "members", nullable = false)
+    public String getMembers() {
+        return members;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
-        return result;
+    public void setMembers(String members) {
+        this.members = members;
     }
 }

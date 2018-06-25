@@ -2,6 +2,7 @@ package com.singularis.messenger.config;
 
 import javax.sql.DataSource;
 
+import com.singularis.messenger.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -42,7 +46,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         http.
                 authorizeRequests()
                 .antMatchers("/").permitAll()
@@ -51,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
-                .defaultSuccessUrl("/user/home")
+                .defaultSuccessUrl("/user/home/")
                 .usernameParameter("login")
                 .passwordParameter("password")
                 .and().logout()

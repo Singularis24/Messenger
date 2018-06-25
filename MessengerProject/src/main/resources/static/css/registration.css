@@ -1,0 +1,73 @@
+.header {
+    height: 50px;
+    text-align: center;
+    font-family: 'DejaVu Serif', Georgia, "Times New Roman", Times, serif;
+    font-size: 24px;
+    color: #ffffff;
+    background-color: #1da1f2;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.header span {
+    font-size: 32px;
+    color: #FF9C7C;
+}
+
+.header a{
+    color: white;
+}
+
+.header a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.reg-container {
+    margin-left: 37%;
+    margin-right: 37%;
+}
+
+.reg-container form{
+    margin-top: 20px;
+}
+
+.reg-container form input{
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+.reg-container form label{
+    width: 100%;
+}
+
+.btn-reg{
+    width: 100%;
+    background-color: #1da1f2;
+    font-family: Verdana, Arial, sans-serif;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    padding: 6px;
+}
+
+.btn-reg:hover{
+    background-color: #09669D;
+    color: white;
+}
+
+.validation-message{
+    font-family: Verdana, Arial, sans-serif;
+    text-align: center;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.success-message{
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    font-family: Verdana, Arial, sans-serif;
+
+}

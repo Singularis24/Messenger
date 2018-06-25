@@ -3,27 +3,60 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>User Page</title>
+    <meta charset="utf-8">
+    <title>YeeBoy Messenger</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home_user.css}" href="../../static/css/home_user.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
-<div class="container">
+<div class="header container">
+    <div class="row header-link">
+        <div class="col-md-2 home-link">
+            <a th:href="@{/user/home}"><span>Yee</span>Boooy</a>
+        </div>
+        <div class="col-md-2">
+            <form th:action="@{/search}" method="post">
+                <input type="search" name="stringSearch" placeholder="Поиск" class="form-control search-input"/>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/dialoges}">Диалоги</a>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/user/settings}">Настройки</a>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/logout}">Выход</a>
+        </div>
+        <div class="col-md-2">
 
-    <form th:action="@{/logout}" method="get">
-        <button class="btn btn-md btn-danger btn-block" name="registration"
-                type="Submit">Logout</button>
-    </form>
-
-    <div class="panel-group" style="margin-top:40px">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <span th:utext="${userName}"></span>
-            </div>
-            <p class="admin-message-text text-center" th:utext="${userMessage}"></p>
         </div>
     </div>
-
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="row user-container">
+                <div class="col-md-6">
+                    <img class="img-thumbnail img-user" th:src="${avatar}" width="100%"
+                         src="../../static/images/defaultAvatar.jpg"/>
+                </div>
+                <div class="col-md-6 user-info">
+                    <p class="user-name" th:text="${user.firstName} + ' ' + ${user.lastName} + ' ' + '||' + ' ' + ${user.login}">
+                        Имя Фамилия || Логин</p>
+                    <p th:if="${user.city}" th:text="'Город: ' + ${user.city}">Город: </p>
+                    <p th:if="${user.phone}" th:text="'Телефон: ' + ${user.phone}">Телефон: </p>
+                    <p th:if="${user.dateBirth}" th:text="'День рождения: ' + ${user.dateBirth}">День рождения: </p>
+                    <form th:action="@{'/dialog/'+ ${user.id}}" method="get">
+                        <button class="btn-send" type="submit">Написать сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--<a th:href="@{'/dialog/'+ ${user.id}}" method="post">Написать</a>-->
+    </div>
 </div>
 </body>
 </html>

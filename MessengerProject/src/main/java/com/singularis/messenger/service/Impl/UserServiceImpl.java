@@ -35,7 +35,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteUser(int id) {
         userRepository.deleteById(id);
-
     }
 
     @Transactional
@@ -46,13 +45,37 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public User getByLogin(String login) {
+    public User findByLogin(String login) {
         return userRepository.findByLogin(login);
+    }
+
+    @Transactional
+    @Override
+    public User findById(int id){
+        return userRepository.findById(id).get();
     }
 
     @Transactional
     @Override
     public List<com.singularis.messenger.domain.User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @Transactional
+    @Override
+    public List<User> findByFirstName(String firstName) {
+        return userRepository.findByFirstName(firstName);
+    }
+
+    @Transactional
+    @Override
+    public List<User> findByLastName(String lastName) {
+        return userRepository.findByLastName(lastName);
+    }
+
+    @Transactional
+    @Override
+    public String findAvatarByIdUser(int id) {
+        return userRepository.findAvatarByUserId(id);
     }
 }

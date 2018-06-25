@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>YeeBoy Messenger</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/search.css}" href="../static/css/search.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="header container">
+    <div class="row header-link">
+        <div class="col-md-2 home-link">
+            <a th:href="@{/user/home}"><span>Yee</span>Boooy</a>
+        </div>
+        <div class="col-md-2">
+            <form th:action="@{/search}" method="post">
+                <input type="search" name="stringSearch" placeholder="Поиск" class="form-control search-input"/>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/}">Диалоги</a>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/}">Настройки</a>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/logout}">Выход</a>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 search-container">
+            <p th:unless="${notFind}">Результаты поиска:</p>
+            <div th:each="users: ${users}" class="search-link">
+                <a th:href="@{/user/home/{id}(id=${users.id})}" th:text="${users.firstName} + ' ' + ${users.lastName}
+    + ' ' + '(' + ${users.login} + ')'"></a>
+            </div>
+            <p th:text="${notFind}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

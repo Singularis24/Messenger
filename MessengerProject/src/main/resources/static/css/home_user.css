@@ -1,0 +1,83 @@
+.header {
+    height: 50px;
+    text-align: center;
+    font-family: 'DejaVu Serif', Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #1da1f2;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.header span {
+    font-size: 18px;
+    color: #FF9C7C;
+}
+
+.header a{
+    color: white;
+}
+
+.header a:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #09669D;
+    padding:5px;
+    border-radius: 2px;
+}
+
+.header-link{
+    margin-top: 12px;
+}
+
+.home-link a:hover{
+    background-color: #1da1f2;
+}
+
+.search-input{
+    margin-top:-3px;
+    height: 30px !important;
+}
+
+.user-container{
+    margin:30px;
+    text-align: center;
+    font-family: Verdana, Arial, sans-serif;
+    color:#333333;
+    font-size: 16px;
+}
+.user-name{
+    font-size: 20px;
+    border-bottom: 2px #FF9C7C solid;
+    text-align: center;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+.img-user{
+    border-radius: 7px !important;
+}
+
+.user-info{
+    text-align: left;
+}
+
+.user-info form{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-send{
+    border: none;
+    width: 220px;
+    height: 40px;
+    background-color: #1da1f2;
+    border-radius: 5px;
+    color: white;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 16px;
+}
+
+.btn-send:hover{
+    background-color: #FF784D;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>YeeBoy Messenger</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/dialog.css}" href="../../static/css/dialog.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="header">
+    <div class="row header-link">
+        <div class="col-md-2 home-link">
+            <a th:href="@{/user/home}"><span>Yee</span>Boooy</a>
+        </div>
+        <div class="col-md-2">
+            <form th:action="@{/search}" method="post">
+                <input type="search" name="stringSearch" placeholder="Поиск" class="form-control search-input"/>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/dialoges}">Диалоги</a>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/user/settings}">Настройки</a>
+        </div>
+        <div class="col-md-2">
+            <a th:href="@{/logout}">Выход</a>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+<div class="container message-container-1">
+    <div class="row" style="height: 100%">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" style="background-color: #80CCF9; height: 100%; padding: 0" id="col6">
+            <div class="message-dialog" id="md">
+                <div th:each="message: ${messeges}" id="emp" class="emp">
+                    <div class="row massage-container">
+                        <div class="col-sm-2 left-img"><img id="img" class="avatar img-thumbnail"
+                                                            src="../static/images/defaultAvatar.jpg"
+                                                            th:src="${message.avatarLink}"></div>
+                        <div class="col-sm-9">
+                            <div class="message-box">
+                                <div class="message-1" id="mesSpeaker" th:text="${message.speaker}"></div>
+                                <span class="message-1" id="time" th:text="${message.date}"></span>
+                                <div class="message-1" id="mesContent" th:text="${message.content}">Сообщение</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form th:action="'/dialog/' + ${user2.id} + '/sendMessage'" id="messageForm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="my-text-area">
+                    <input type="hidden" id="id_dialog" th:name="id_dialog" th:value="${dialog.id}">
+                    <input type="hidden" id="id_user" th:name="id_user" th:value="${user.id}">
+                    <input type="hidden" id="speaker" th:name="speaker"
+                           th:value="${user.firstName} + ' ' + ${user.lastName}">
+                    <input type="hidden" id="avatarLink" th:name="avatarLink" th:value="${user.avatarLink}">
+                    <textarea id="message"></textarea>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <button type="submit"><img class="btn-send-ico" src="../static/images/ico-send.png"
+                                                       th:src="@{/images/ico-send.png}"></button>
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button"><img class="btn-smile-ico" src="../static/images/ico-smile.png"
+                                                       th:src="@{/images/ico-smile.png}"></button>
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button"><img class="btn-attach-ico" src="../static/images/ico-attach.png"
+                                                       th:src="@{/images/ico-attach.png}"></button>
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="reset"><img class="btn-delete-ico" src="../../static/images/ico-delete.png"
+                                                      th:src="@{/images/ico-delete.png}"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/js/dialog.js"></script>
+<script>
+    var emp = document.getElementsByClassName("emp");
+    var md = document.getElementById("md");
+    md.scrollTop = md.scrollHeight;
+
+</script>
+
+</body>
+</html>

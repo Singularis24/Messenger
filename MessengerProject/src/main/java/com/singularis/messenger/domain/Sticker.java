@@ -1,7 +1,6 @@
 package com.singularis.messenger.domain;
 
 import javax.persistence.*;
-import java.util.Arrays;
 
 @Entity
 @Table(name = "sticker", schema = "messenger", catalog = "")
@@ -29,23 +28,4 @@ public class Sticker {
         this.content = content;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Sticker that = (Sticker) o;
-
-        if (id != that.id) return false;
-        if (!Arrays.equals(content, that.content)) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + Arrays.hashCode(content);
-        return result;
-    }
 }

@@ -1,0 +1,176 @@
+.header {
+    position: fixed;
+    top:0;
+    left:50%; margin-left:-30%!important;
+    height: 50px;
+    text-align: center;
+    font-family: 'DejaVu Serif', Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #1da1f2;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    z-index: 5;
+    width:61%;
+}
+
+.header span {
+    font-size: 18px;
+    color: #FF9C7C;
+}
+
+.header a {
+    color: white;
+}
+
+.header a:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #09669D;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+.header-link {
+    margin-top: 12px;
+}
+
+.home-link a:hover {
+    background-color: #1da1f2;
+}
+
+.search-input {
+    margin-top: -3px;
+    height: 30px !important;
+}
+
+.message-container-1 {
+    height: 100%;
+    margin-top: 50px;
+}
+
+.message {
+
+}
+
+#messageForm {
+    position: fixed;
+    bottom: 15px;
+    width: 100%;
+}
+
+.my-text-area {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+
+.my-text-area textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+}
+
+.my-text-area button {
+    border: none;
+    width: 100%;
+    height: 30px;
+    background-color: #1da1f2;
+    border-radius: 5px;
+    color: white;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 16px;
+}
+
+.my-text-area button:hover {
+    background-color: #09669D;
+}
+
+.btn-send-ico {
+    height: 80%;
+    width: 60%;
+    margin-top: -3px;
+}
+
+.btn-smile-ico {
+    height: 80%;
+    margin-top: -3px;
+}
+
+.btn-attach-ico {
+    height: 55%;
+    margin-top: -3px;
+}
+
+.btn-delete-ico {
+    height: 80%;
+    margin-top: -3px;
+}
+
+.message-dialog {
+    overflow: auto;
+    height: 80%;
+    margin-left: 20px;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar{
+    width:9px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #1da1f2;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: #09669D;
+}
+
+::-webkit-scrollbar-track{
+    border-width:0;
+}
+
+::-webkit-scrollbar-track:hover{
+    background-color: #eee;
+}
+
+html, body {
+    height: 97%;
+}
+
+.avatar {
+    margin-top: 5px;
+    margin-left: 7px;
+    width: 100%;
+}
+
+.massage-container {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.message-box {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 14px;
+    width: 100%;
+    color: #333333;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.message-1 {
+    width: auto;
+    white-space: pre;
+}
+
+#mesSpeaker{
+    color: #09669D;
+    font-weight: bold;
+}
+
+#time{
+    font-size: 12px;
+    color: gray;
+}

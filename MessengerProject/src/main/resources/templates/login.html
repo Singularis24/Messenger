@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
-
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Spring Security Tutorial</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>YeeBoy Messenger</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" href="../static/css/login.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-
 <body>
-	<form th:action="@{/registration}" method="get">
-		<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
-	</form>	
-	
-	<div class="container">
-		<form th:action="@{/login}" method="POST" class="form-signin">
-			<h3 class="form-signin-heading" th:text="Welcome"></h3>
-			<br/>
-			 
-			<input type="text" id="login" name="login"  th:placeholder="Login"
-				class="form-control" /> <br/> 
-			<input type="password"  th:placeholder="Password"
-				id="password" name="password" class="form-control" /> <br /> 
-				
-			<div align="center" th:if="${param.error}">
-				<p style="font-size: 20px; color: #FF1C19;">Email or Password invalid, please verify</p>
-			</div>
-			<button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
-		</form>
-	</div>
+<div class="header container">
+    <a th:href="@{/}"><span>Yee</span>Boooy Messenger</a>
+</div>
+<div class="login-container">
+    <form th:id="login-form" th:action="@{/login}" method="post">
+        <br/>
+        <input type="text" id="login" name="login" th:placeholder="Логин"
+               class="form-control"/> <br/>
+        <input type="password" th:placeholder="Пароль"
+               id="password" name="password" class="form-control"/> <br/>
+        <div class="login-error" th:if="${param.error}">
+            <p>Логин или пароль введены неверно</p>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-6 form-btn-sign-in">
+            <form th:form="login-form">
+                <button class="btn-login" type="submit" th:form="login-form">Войти</button>
+            </form>
+        </div>
+        <div class="col-md-6 form-btn-sign-up">
+            <form th:action="@{/registration}" method="get">
+                <button class="btn-login" type="submit">Регистрация</button>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

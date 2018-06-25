@@ -1,18 +1,33 @@
 package com.singularis.messenger.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
-
-import java.sql.Date;
 
 @Entity
 @Table(name = "message", schema = "messenger", catalog = "")
 public class Message {
     private int id;
+    private int id_user;
+    private int id_dialog;
     private String content;
-    private Date date;
-    private Dialog dialogByIdDialog;
+    private String date;
+    private String speaker;
+    private String avatarLink;
+
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name="user", nullable = true)
+    @JsonBackReference
+    public User getUser(){
+        return this.user;
+    }
+    public void setUser(User user){
+        this.user = user;
+    }
 
     @Id
+    @GeneratedValue
     @Basic
     @Column(name = "id", nullable = false)
     public int getId() {
@@ -35,43 +50,51 @@ public class Message {
 
     @Basic
     @Column(name = "date", nullable = false)
-    public java.util.Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Message that = (Message) o;
-
-        if (id != that.id) return false;
-        if (content != null ? !content.equals(that.content) : that.content != null) return false;
-        if (date != null ? !date.equals(that.date) : that.date != null) return false;
-
-        return true;
+    @Basic
+    @Column(name = "id_user", nullable = false)
+    public int getId_user() {
+        return id_user;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        return result;
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "id_dialog", referencedColumnName = "id", nullable = false)
-    public Dialog getDialogByIdDialog() {
-        return dialogByIdDialog;
+    @Basic
+    @Column(name = "id_dialog", nullable = false)
+    public int getId_dialog() {
+        return id_dialog;
     }
 
-    public void setDialogByIdDialog(Dialog dialogByIdDialog) {
-        this.dialogByIdDialog = dialogByIdDialog;
+    public void setId_dialog(int id_dialog) {
+        this.id_dialog = id_dialog;
+    }
+
+    @Basic
+    @Column(name = "speaker")
+    public String getSpeaker() {
+        return speaker;
+    }
+
+    public void setSpeaker(String speaker) {
+        this.speaker = speaker;
+    }
+
+    @Basic
+    @Column(name="avatarLink")
+    public String getAvatarLink() {
+        return avatarLink;
+    }
+
+    public void setAvatarLink(String avatarLink) {
+        this.avatarLink = avatarLink;
     }
 }
